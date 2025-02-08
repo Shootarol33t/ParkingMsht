@@ -7,55 +7,83 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ParkingMsht.SportCar;
+
 
 namespace ParkingMsht
 {
     public partial class Form1 : Form
     {
-        private Car car;
+        private SportCar car;
+
         public Form1()
         {
             InitializeComponent();
         }
         private void Draw()
         {
-            if (car == null) return;
-
             Bitmap bmp = new Bitmap(pictureBoxCar.Width, pictureBoxCar.Height);
-            Graphics g = Graphics.FromImage(bmp);
-
-            car.Draw(g);
+            Graphics gr = Graphics.FromImage(bmp);
+            car.DrawCar(gr);
             pictureBoxCar.Image = bmp;
         }
+
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            car = new Car(200, 150, 10, Color.Blue);
+            Random rnd = new Random();
+            car = new SportCar(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
+            Color.Yellow, true, true, true);
+            car.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxCar.Width,
+            pictureBoxCar.Height);
             Draw();
+
         }
-        private void MoveCar(Direction direction)
+
+
+        private void buttonUp_Click(object sender, EventArgs e)
         {
-            if (car == null) return;
-
-            car.Move(direction);
-            Draw();
+            if (car != null)
+            {
+                car.MoveTransport(Direction.Up);
+                Draw();
+            }
         }
 
-        private void buttonUp_Click(object sender, EventArgs e) => MoveCar(Direction.Up);
+
+
+
+        private void buttonRight_Click(object sender, EventArgs e)
+        {
+            if (car != null)
+            {
+                car.MoveTransport(Direction.Right);
+                Draw();
+            }
+        }
 
 
 
 
-        private void buttonRight_Click(object sender, EventArgs e) => MoveCar(Direction.Right);
-        
+        private void buttonDown_Click(object sender, EventArgs e)
+        {
+            if (car != null)
+            {
+                car.MoveTransport(Direction.Down);
+                Draw();
+            }
+        }
 
-        
-
-        private void buttonDown_Click(object sender, EventArgs e) => MoveCar(Direction.Down);
 
 
 
-
-        private void buttonLeft_Click(object sender, EventArgs e) => MoveCar(Direction.Left);
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            if (car != null)
+            {
+                car.MoveTransport(Direction.Left);
+                Draw();
+            }
+        }
 
         private void pictureBoxCar_Click(object sender, EventArgs e)
         {
