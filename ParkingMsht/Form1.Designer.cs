@@ -35,6 +35,7 @@
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonCreate = new System.Windows.Forms.Button();
             this.buttonCreateSportCar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,11 +109,22 @@
             this.buttonCreateSportCar.UseVisualStyleBackColor = true;
             this.buttonCreateSportCar.Click += new System.EventHandler(this.buttonCreateSportCar_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(250, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Парковка";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonCreateSportCar);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.buttonRight);
@@ -136,6 +148,7 @@
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonCreate;
         private System.Windows.Forms.Button buttonCreateSportCar;
+        private System.Windows.Forms.Button button1;
     }
 }
 

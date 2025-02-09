@@ -103,5 +103,11 @@ namespace ParkingMsht
             pictureBoxCar.Height);
             Draw();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 newForm = new Form2();
+            newForm.ShowDialog(); // Открывает новую форму и блокирует основную
+        }
     }
 }
