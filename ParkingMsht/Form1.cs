@@ -14,7 +14,8 @@ namespace ParkingMsht
 {
     public partial class Form1 : Form
     {
-        private SportCar car;
+        private ITransport car;
+        private Random rnd = new Random();
 
         public Form1()
         {
@@ -22,17 +23,20 @@ namespace ParkingMsht
         }
         private void Draw()
         {
+            if (car == null) return;
+
             Bitmap bmp = new Bitmap(pictureBoxCar.Width, pictureBoxCar.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            car.DrawCar(gr);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                car.DrawCar(g);
+            }
             pictureBoxCar.Image = bmp;
         }
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            car = new SportCar(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
-            Color.Yellow, true, true, true);
+            car = new Car(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
             car.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxCar.Width,
             pictureBoxCar.Height);
             Draw();
@@ -88,6 +92,16 @@ namespace ParkingMsht
         private void pictureBoxCar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonCreateSportCar_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            car = new SportCar(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
+            Color.Yellow, true, true, true);
+            car.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxCar.Width,
+            pictureBoxCar.Height);
+            Draw();
         }
     }
 }
