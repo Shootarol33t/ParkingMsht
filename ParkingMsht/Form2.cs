@@ -14,11 +14,11 @@ namespace ParkingMsht
     {
         MultiLevelParking parking;
         private const int countLevel = 5;
+        FormCarConfig form;
         public Form2()
         {
             InitializeComponent();
-            parking = new MultiLevelParking(countLevel, pictureBoxParking.Width,
-pictureBoxParking.Height);
+            parking = new MultiLevelParking(countLevel, pictureBoxParking.Width,pictureBoxParking.Height);
             //заполнение listBox
             for (int i = 0; i < countLevel; i++)
             {
@@ -51,21 +51,8 @@ pictureBoxParking.Height);
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (listBoxLevels.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var car = new Car(100, 1000, dialog.Color);
-                    int place = parking[listBoxLevels.SelectedIndex] + car;
-                    if (place == -1)
-                    {
-                        MessageBox.Show("Нет свободных мест", "Ошибка",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Draw();
-                }
-            }
+            FormCarConfig newForm = new FormCarConfig();
+            newForm.ShowDialog(); // Открывает новую форму и блокирует основную
 
         }
 
@@ -128,6 +115,29 @@ pictureBoxParking.Height);
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
+        }
+        private void AddCar(ITransport car)
+        {
+            if (car != null && listBoxLevels.SelectedIndex > -1)
+            {
+                int place = parking[listBoxLevels.SelectedIndex] + car;
+                if (place > -1)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Машину не удалось поставить");
+                }
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            form = new FormCarConfig();
+            form.AddEvent(AddCar);
+            form.Show();
+
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace ParkingMsht
 {
+    public delegate void carDelegate(ITransport car);
     internal static class Program
     {
         /// <summary>
