@@ -139,52 +139,22 @@ namespace ParkingMsht
                 g.FillRectangle(dopBrush, _startPosX - 5, _startPosY, 10, 50);
                 g.DrawRectangle(pen, _startPosX - 5, _startPosY, 10, 50);
             }
+        }
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
 
 
 
 
-
-            //public void MoveTransport(Direction direction)
-            //{
-            //    float step = MaxSpeed * 100 / Weight;
-            //    switch (direction)
-            //    {
-            //        // вправо
-            //        case Direction.Right:
-            //            if (_startPosX + step < _pictureWidth - carWidth)
-            //            {
-            //                _startPosX += step;
-            //            }
-            //            break;
-            //        //влево
-            //        case Direction.Left:
-            //            if (_startPosX - step > 0)
-            //            {
-            //                _startPosX -= step;
-            //            }
-            //            break;
-            //        //вверх
-            //        case Direction.Up:
-            //            if (_startPosY - step > 0)
-            //            {
-            //                _startPosY -= step;
-            //            }
-            //            break;
-            //        //вниз
-            //        case Direction.Down:
-            //            if (_startPosY + step < _pictureHeight - carHeight)
-            //            {
-            //                _startPosY += step;
-            //            }
-            //            break;
-            //    }
-            //}
+            
 
 
 
 
         }
     }
-}  
+  
 
 
