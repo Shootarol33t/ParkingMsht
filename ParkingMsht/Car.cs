@@ -30,6 +30,20 @@ namespace ParkingMsht
             Weight = weight;
             MainColor = mainColor;
         }
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="info">Информация по объекту</param>
+        public Car(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
+        }
         public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
@@ -56,6 +70,7 @@ namespace ParkingMsht
                         _startPosY -= step;
                     }
                     break;
+                //вниз
                 case Direction.Down:
                     if (_startPosY + step < _pictureHeight - carHeight)
                     {
@@ -89,8 +104,7 @@ namespace ParkingMsht
             g.FillRectangle(br, _startPosX + 80, _startPosY + 10, 10, 30);
             g.FillRectangle(br, _startPosX + 10, _startPosY, 70, 50);
             //стекла
-            Brush brBlue = new SolidBrush(Color.LightBlue);
-            g.FillRectangle(brBlue, _startPosX + 60, _startPosY + 5, 5, 40);
+            Brush brBlue = new SolidBrush(Color.LightBlue); g.FillRectangle(brBlue, _startPosX + 60, _startPosY + 5, 5, 40);
             g.FillRectangle(brBlue, _startPosX + 20, _startPosY + 5, 5, 40);
             g.FillRectangle(brBlue, _startPosX + 25, _startPosY + 3, 35, 2);
             g.FillRectangle(brBlue, _startPosX + 25, _startPosY + 46, 35, 2);
@@ -99,6 +113,11 @@ namespace ParkingMsht
             g.DrawRectangle(pen, _startPosX + 65, _startPosY + 10, 25, 30);
             g.DrawRectangle(pen, _startPosX, _startPosY + 10, 15, 30);
         }
+        public override string ToString()
+        {
+            return MaxSpeed + ";" + Weight + ";" + MainColor.Name;
+        }
     }
 }
+
         

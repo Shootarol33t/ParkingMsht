@@ -9,9 +9,6 @@ namespace ParkingMsht
 {
     public class Parking<T> where T : class, ITransport
     {
-        /// <summary>
-        /// Массив объектов, которые храним
-        /// </summary>
         private Dictionary<int, T> _places;
         /// <summary>
         /// Максимальное количество мест на парковке
@@ -57,8 +54,7 @@ namespace ParkingMsht
                 if (p.CheckFreePlace(i))
                 {
                     p._places.Add(i, car);
-                    p._places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5,
-                    i % 5 * _placeSizeHeight + 15, p.PictureWidth, p.PictureHeight);
+                    p._places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 * _placeSizeHeight + 15, p.PictureWidth, p.PictureHeight);
                     return i;
                 }
             }
@@ -87,10 +83,6 @@ namespace ParkingMsht
                 _places[keys[i]].DrawCar(g);
             }
         }
-        /// <summary>
-        /// Метод отрисовки разметки парковочных мест
-        /// </summary>
-        /// <param name="g"></param>
         private void DrawMarking(Graphics g)
         {
             Pen pen = new Pen(Color.Black, 3);
@@ -106,6 +98,25 @@ namespace ParkingMsht
                 g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth, 400);
             }
         }
-
+        public T this[int ind]
+        {
+            get
+            {
+                if (_places.ContainsKey(ind))
+                {
+                    return _places[ind];
+                }
+                return null;
+            }
+            set
+            {
+                if (CheckFreePlace(ind))
+                {
+                    _places.Add(ind, value);
+                    _places[ind].SetPosition(5 + ind / 5 * _placeSizeWidth + 5, ind % 5
+                    * _placeSizeHeight + 15, PictureWidth, PictureHeight);
+                }
+            }
+        }
     }
 }
