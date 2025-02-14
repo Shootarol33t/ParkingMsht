@@ -30,23 +30,23 @@
         {
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelCar = new System.Windows.Forms.Label();
             this.labelSport = new System.Windows.Forms.Label();
+            this.labelCar = new System.Windows.Forms.Label();
             this.panelCar = new System.Windows.Forms.Panel();
+            this.labelDopColor = new System.Windows.Forms.Label();
+            this.labelBaseColor = new System.Windows.Forms.Label();
             this.panelColor = new System.Windows.Forms.Panel();
-            this.panelBlack = new System.Windows.Forms.Panel();
-            this.panelWhite = new System.Windows.Forms.Panel();
-            this.panelGreen = new System.Windows.Forms.Panel();
-            this.panelBlue = new System.Windows.Forms.Panel();
-            this.panelRed = new System.Windows.Forms.Panel();
-            this.panelYellow = new System.Windows.Forms.Panel();
-            this.panelGray = new System.Windows.Forms.Panel();
             this.panelGold = new System.Windows.Forms.Panel();
+            this.panelGray = new System.Windows.Forms.Panel();
+            this.panelYellow = new System.Windows.Forms.Panel();
+            this.panelRed = new System.Windows.Forms.Panel();
+            this.panelBlue = new System.Windows.Forms.Panel();
+            this.panelGreen = new System.Windows.Forms.Panel();
+            this.panelWhite = new System.Windows.Forms.Panel();
+            this.panelBlack = new System.Windows.Forms.Panel();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelBaseColor = new System.Windows.Forms.Label();
-            this.labelDopColor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panelCar.SuspendLayout();
@@ -72,17 +72,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор кузова";
             // 
-            // labelCar
-            // 
-            this.labelCar.AllowDrop = true;
-            this.labelCar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelCar.Location = new System.Drawing.Point(5, 25);
-            this.labelCar.Name = "labelCar";
-            this.labelCar.Size = new System.Drawing.Size(106, 32);
-            this.labelCar.TabIndex = 0;
-            this.labelCar.Text = "Обычный автомобиль";
-            this.labelCar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelCar_MouseDown);
-            // 
             // labelSport
             // 
             this.labelSport.AllowDrop = true;
@@ -93,6 +82,17 @@
             this.labelSport.TabIndex = 1;
             this.labelSport.Text = "Гоночный автомобиль";
             this.labelSport.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelSport_MouseDown);
+            // 
+            // labelCar
+            // 
+            this.labelCar.AllowDrop = true;
+            this.labelCar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelCar.Location = new System.Drawing.Point(5, 25);
+            this.labelCar.Name = "labelCar";
+            this.labelCar.Size = new System.Drawing.Size(106, 32);
+            this.labelCar.TabIndex = 0;
+            this.labelCar.Text = "Обычный автомобиль";
+            this.labelCar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelCar_MouseDown);
             // 
             // panelCar
             // 
@@ -106,6 +106,30 @@
             this.panelCar.TabIndex = 2;
             this.panelCar.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelCar_DragDrop);
             this.panelCar.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelCar_DragEnter);
+            // 
+            // labelDopColor
+            // 
+            this.labelDopColor.AllowDrop = true;
+            this.labelDopColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelDopColor.Location = new System.Drawing.Point(64, 162);
+            this.labelDopColor.Name = "labelDopColor";
+            this.labelDopColor.Size = new System.Drawing.Size(106, 32);
+            this.labelDopColor.TabIndex = 2;
+            this.labelDopColor.Text = "Дополнительный цвет";
+            this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
+            this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragEnter);
+            // 
+            // labelBaseColor
+            // 
+            this.labelBaseColor.AllowDrop = true;
+            this.labelBaseColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelBaseColor.Location = new System.Drawing.Point(64, 122);
+            this.labelBaseColor.Name = "labelBaseColor";
+            this.labelBaseColor.Size = new System.Drawing.Size(106, 32);
+            this.labelBaseColor.TabIndex = 2;
+            this.labelBaseColor.Text = "Основной цвет";
+            this.labelBaseColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragDrop);
+            this.labelBaseColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
             // 
             // panelColor
             // 
@@ -125,14 +149,59 @@
             this.panelColor.Paint += new System.Windows.Forms.PaintEventHandler(this.panelColor_Paint);
             this.panelColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
             // 
-            // panelBlack
+            // panelGold
             // 
-            this.panelBlack.AllowDrop = true;
-            this.panelBlack.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panelBlack.Location = new System.Drawing.Point(21, 12);
-            this.panelBlack.Name = "panelBlack";
-            this.panelBlack.Size = new System.Drawing.Size(34, 31);
-            this.panelBlack.TabIndex = 0;
+            this.panelGold.AllowDrop = true;
+            this.panelGold.BackColor = System.Drawing.Color.Gold;
+            this.panelGold.Location = new System.Drawing.Point(73, 123);
+            this.panelGold.Name = "panelGold";
+            this.panelGold.Size = new System.Drawing.Size(34, 31);
+            this.panelGold.TabIndex = 1;
+            // 
+            // panelGray
+            // 
+            this.panelGray.AllowDrop = true;
+            this.panelGray.BackColor = System.Drawing.Color.Gray;
+            this.panelGray.Location = new System.Drawing.Point(21, 123);
+            this.panelGray.Name = "panelGray";
+            this.panelGray.Size = new System.Drawing.Size(34, 31);
+            this.panelGray.TabIndex = 1;
+            // 
+            // panelYellow
+            // 
+            this.panelYellow.AllowDrop = true;
+            this.panelYellow.BackColor = System.Drawing.Color.Yellow;
+            this.panelYellow.Location = new System.Drawing.Point(73, 86);
+            this.panelYellow.Name = "panelYellow";
+            this.panelYellow.Size = new System.Drawing.Size(34, 31);
+            this.panelYellow.TabIndex = 1;
+            // 
+            // panelRed
+            // 
+            this.panelRed.AllowDrop = true;
+            this.panelRed.BackColor = System.Drawing.Color.Red;
+            this.panelRed.Location = new System.Drawing.Point(21, 86);
+            this.panelRed.Name = "panelRed";
+            this.panelRed.Size = new System.Drawing.Size(34, 31);
+            this.panelRed.TabIndex = 1;
+            // 
+            // panelBlue
+            // 
+            this.panelBlue.AllowDrop = true;
+            this.panelBlue.BackColor = System.Drawing.Color.Blue;
+            this.panelBlue.Location = new System.Drawing.Point(73, 49);
+            this.panelBlue.Name = "panelBlue";
+            this.panelBlue.Size = new System.Drawing.Size(34, 31);
+            this.panelBlue.TabIndex = 3;
+            // 
+            // panelGreen
+            // 
+            this.panelGreen.AllowDrop = true;
+            this.panelGreen.BackColor = System.Drawing.Color.Green;
+            this.panelGreen.Location = new System.Drawing.Point(21, 49);
+            this.panelGreen.Name = "panelGreen";
+            this.panelGreen.Size = new System.Drawing.Size(34, 31);
+            this.panelGreen.TabIndex = 2;
             // 
             // panelWhite
             // 
@@ -144,59 +213,14 @@
             this.panelWhite.TabIndex = 1;
             this.panelWhite.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
-            // panelGreen
+            // panelBlack
             // 
-            this.panelGreen.AllowDrop = true;
-            this.panelGreen.BackColor = System.Drawing.Color.Green;
-            this.panelGreen.Location = new System.Drawing.Point(21, 49);
-            this.panelGreen.Name = "panelGreen";
-            this.panelGreen.Size = new System.Drawing.Size(34, 31);
-            this.panelGreen.TabIndex = 2;
-            // 
-            // panelBlue
-            // 
-            this.panelBlue.AllowDrop = true;
-            this.panelBlue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.panelBlue.Location = new System.Drawing.Point(73, 49);
-            this.panelBlue.Name = "panelBlue";
-            this.panelBlue.Size = new System.Drawing.Size(34, 31);
-            this.panelBlue.TabIndex = 3;
-            // 
-            // panelRed
-            // 
-            this.panelRed.AllowDrop = true;
-            this.panelRed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.panelRed.Location = new System.Drawing.Point(21, 86);
-            this.panelRed.Name = "panelRed";
-            this.panelRed.Size = new System.Drawing.Size(34, 31);
-            this.panelRed.TabIndex = 1;
-            // 
-            // panelYellow
-            // 
-            this.panelYellow.AllowDrop = true;
-            this.panelYellow.BackColor = System.Drawing.Color.Yellow;
-            this.panelYellow.Location = new System.Drawing.Point(73, 86);
-            this.panelYellow.Name = "panelYellow";
-            this.panelYellow.Size = new System.Drawing.Size(34, 31);
-            this.panelYellow.TabIndex = 1;
-            // 
-            // panelGray
-            // 
-            this.panelGray.AllowDrop = true;
-            this.panelGray.BackColor = System.Drawing.Color.Gray;
-            this.panelGray.Location = new System.Drawing.Point(21, 123);
-            this.panelGray.Name = "panelGray";
-            this.panelGray.Size = new System.Drawing.Size(34, 31);
-            this.panelGray.TabIndex = 1;
-            // 
-            // panelGold
-            // 
-            this.panelGold.AllowDrop = true;
-            this.panelGold.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.panelGold.Location = new System.Drawing.Point(73, 123);
-            this.panelGold.Name = "panelGold";
-            this.panelGold.Size = new System.Drawing.Size(34, 31);
-            this.panelGold.TabIndex = 1;
+            this.panelBlack.AllowDrop = true;
+            this.panelBlack.BackColor = System.Drawing.Color.Black;
+            this.panelBlack.Location = new System.Drawing.Point(21, 12);
+            this.panelBlack.Name = "panelBlack";
+            this.panelBlack.Size = new System.Drawing.Size(34, 31);
+            this.panelBlack.TabIndex = 0;
             // 
             // buttonAdd
             // 
@@ -225,30 +249,6 @@
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Цвета";
-            // 
-            // labelBaseColor
-            // 
-            this.labelBaseColor.AllowDrop = true;
-            this.labelBaseColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelBaseColor.Location = new System.Drawing.Point(64, 122);
-            this.labelBaseColor.Name = "labelBaseColor";
-            this.labelBaseColor.Size = new System.Drawing.Size(106, 32);
-            this.labelBaseColor.TabIndex = 2;
-            this.labelBaseColor.Text = "Основной цвет";
-            this.labelBaseColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragDrop);
-            this.labelBaseColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
-            // 
-            // labelDopColor
-            // 
-            this.labelDopColor.AllowDrop = true;
-            this.labelDopColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelDopColor.Location = new System.Drawing.Point(64, 162);
-            this.labelDopColor.Name = "labelDopColor";
-            this.labelDopColor.Size = new System.Drawing.Size(106, 32);
-            this.labelDopColor.TabIndex = 2;
-            this.labelDopColor.Text = "Дополнительный цвет";
-            this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
-            this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragEnter);
             // 
             // FormCarConfig
             // 
