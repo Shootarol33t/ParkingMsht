@@ -52,7 +52,7 @@ namespace ParkingMsht
                 return null;
             }
         }
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -61,18 +61,16 @@ namespace ParkingMsht
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
                 //Записываем количество уровней
-                WriteToFile("CountLeveles:" + parkingStages.Count +
-                Environment.NewLine, fs);
+                WriteToFile("CountLeveles:" + parkingStages.Count + Environment.NewLine, fs);
                 foreach (var level in parkingStages)
                 {
                     //Начинаем уровень
                     WriteToFile("Level" + Environment.NewLine, fs);
                     for (int i = 0; i < countPlaces; i++)
                     {
-                        var car = level[i];
-                        if (car != null)
+                        try
                         {
-                            //если место не пустое
+                            var car = level[i];
                             //Записываем тип мшаины
                             if (car.GetType().Name == "Car")
                             {
@@ -85,107 +83,83 @@ namespace ParkingMsht
                             //Записываемые параметры
                             WriteToFile(car + Environment.NewLine, fs);
                         }
+                        finally { }
                     }
                 }
             }
-            return true;
+
+            
         }
         private void WriteToFile(string text, FileStream stream)
         {
             byte[] info = new UTF8Encoding(true).GetBytes(text);
             stream.Write(info, 0, info.Length);
         }
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
-
-            string[] lines;
-            try
+            string bufferTextFromFile = "";
+            using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                lines = File.ReadAllLines(filename);
+                byte[] b = new byte[fs.Length];
+                UTF8Encoding temp = new UTF8Encoding(true);
+                while (fs.Read(b, 0, b.Length) > 0)
+                {
+                    bufferTextFromFile += temp.GetString(b);
+                }
             }
-            catch (Exception ex)
+            bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
+            var strs = bufferTextFromFile.Split('\n');
+            if (strs[0].Contains("CountLeveles"))
             {
-                Console.WriteLine($"Ошибка при чтении файла: {ex.Message}");
-                return false;
+                //считываем количество уровней
+                int count = Convert.ToInt32(strs[0].Split(':')[1]);
+                if (parkingStages != null)
+                {
+                    parkingStages.Clear();
+                }
+                parkingStages = new List<Parking<ITransport>>(count);
             }
-
-            if (lines.Length == 0 || !lines[0].StartsWith("CountLeveles:"))
+            else
             {
-                Console.WriteLine("Ошибка: Некорректный формат файла.");
-                return false;
+                //если нет такой записи, то это не те данные
+                throw new Exception("Неверный формат файла");
             }
-
-            // Читаем количество уровней
-            if (!int.TryParse(lines[0].Split(':')[1], out int levelCount))
-            {
-                Console.WriteLine("Ошибка: Некорректное значение CountLeveles.");
-                return false;
-            }
-
-            if (parkingStages != null)
-            {
-                parkingStages.Clear();
-            }
-            parkingStages = new List<Parking<ITransport>>(levelCount);
-
-            int currentLevel = -1;
+            int counter = -1;
             ITransport car = null;
-
-            for (int i = 1; i < lines.Length; i++)
+            for (int i = 1; i < strs.Length; ++i)
             {
-                string line = lines[i].Trim();
-                if (string.IsNullOrEmpty(line)) continue; // Пропуск пустых строк
-
-                if (line == "Level")
+                if (strs[i] == "Level")
                 {
-                    currentLevel++;
-                    parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth, pictureHeight));
+                    //начинаем новый уровень
+                    counter++;
+                    parkingStages.Add(new Parking<ITransport>(countPlaces,
+                    pictureWidth, pictureHeight));
                     continue;
                 }
-
-                string[] parts = line.Split(':');
-                if (parts.Length < 3)
+                if (string.IsNullOrEmpty(strs[i]))
                 {
-                    Console.WriteLine($"Ошибка: Некорректная строка {line}");
                     continue;
                 }
-
-                int place;
-                if (!int.TryParse(parts[0], out place))
+                if (strs[i].Split(':')[1] == "Car")
                 {
-                    Console.WriteLine($"Ошибка: Некорректный номер места {parts[0]}");
-                    continue;
+                    car = new Car(strs[i].Split(':')[2]);
                 }
-
-                string type = parts[1];
-                string param = parts[2];
-
-                if (type == "Car")
+                else if (strs[i].Split(':')[1] == "SportCar")
                 {
-                    car = new Car(param);
+                    car = new SportCar(strs[i].Split(':')[2]);
                 }
-                else if (type == "SportCar")
-                {
-                    car = new SportCar(param);
-                }
-                else
-                {
-                    Console.WriteLine($"Ошибка: Неизвестный тип транспорта {type}");
-                    continue;
-                }
-                Console.WriteLine($"Level: {currentLevel}, Place: {place}, Type: {type}, Param: {param}");
-                parkingStages[currentLevel][place] = car;
+                parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = car;
             }
-
-            return true;
         }
+
 
     }
 }
+
     
    
 
