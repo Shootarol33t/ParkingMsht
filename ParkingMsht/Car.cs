@@ -8,7 +8,7 @@ using static ParkingMsht.SportCar;
 
 namespace ParkingMsht
 {
-    public class Car : Vehicle
+    public class Car : Vehicle, IComparable<Car>, IEquatable<Car>
     {
         /// <summary>
         /// Ширина отрисовки автомобиля
@@ -41,10 +41,11 @@ namespace ParkingMsht
             {
                 MaxSpeed = Convert.ToInt32(strs[0]);
                 Weight = Convert.ToInt32(strs[1]);
-                MainColor = Color.FromName(strs[2]);
             }
+            MainColor = Color.FromName(strs[2]);
         }
-        public override void MoveTransport(Direction direction)
+
+public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
             switch (direction)
@@ -104,7 +105,8 @@ namespace ParkingMsht
             g.FillRectangle(br, _startPosX + 80, _startPosY + 10, 10, 30);
             g.FillRectangle(br, _startPosX + 10, _startPosY, 70, 50);
             //стекла
-            Brush brBlue = new SolidBrush(Color.LightBlue); g.FillRectangle(brBlue, _startPosX + 60, _startPosY + 5, 5, 40);
+            Brush brBlue = new SolidBrush(Color.LightBlue);
+            g.FillRectangle(brBlue, _startPosX + 60, _startPosY + 5, 5, 40);
             g.FillRectangle(brBlue, _startPosX + 20, _startPosY + 5, 5, 40);
             g.FillRectangle(brBlue, _startPosX + 25, _startPosY + 3, 35, 2);
             g.FillRectangle(brBlue, _startPosX + 25, _startPosY + 46, 35, 2);
@@ -117,7 +119,81 @@ namespace ParkingMsht
         {
             return MaxSpeed + ";" + Weight + ";" + MainColor.Name;
         }
+        /// <summary>
+        /// Метод интерфейса IComparable для класса Car
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(Car other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(other.MaxSpeed);
+            }
+            if (Weight != other.Weight)
+            {
+                return Weight.CompareTo(other.Weight);
+            }
+            if (MainColor != other.MainColor)
+            {
+                MainColor.Name.CompareTo(other.MainColor.Name);
+            }
+            return 0;
+        }
+        public bool Equals(Car other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Car carObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(carObj);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
 
-        
+
+

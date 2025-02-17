@@ -156,7 +156,10 @@ namespace ParkingMsht
             }
         }
 
-
+        public void Sort()
+        {
+            parkingStages.Sort();
+        }
     }
 }
 

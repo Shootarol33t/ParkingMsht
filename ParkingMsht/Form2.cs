@@ -226,6 +226,13 @@ namespace ParkingMsht
         {
 
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            parking.Sort();
+            Draw();
+            //logger.Info("Сортировка уровней");
+        }
     }
 }
     
